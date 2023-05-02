@@ -13,3 +13,18 @@ console.log(topics, numberOfstudents, isKnowJavascript);
 */
 const studentName: string[] = ["Jubayer", "Sabith", "Hasan"];
 const singleUser: [string, number] = ["Jubayer", 123456];
+
+/*
+  Object, Literal Types and Optional types
+*/
+const userDetails: {
+  name: string;
+  contactNo: number;
+  isActive: boolean;
+  readonly country: "Bangladesh";
+} = {
+  name: "Jubayer Alam Khan",
+  contactNo: 1234567890,
+  isActive: true,
+  country: "Bangladesh",
+};
