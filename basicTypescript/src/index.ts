@@ -189,8 +189,20 @@ getMyCarSpeed(10);
 getMyCarSpeed("10 kmh^-1");
 getMyCarSpeed(true);
 
-function throwError(message: string): never {
-  throw new Error(message);
-}
+// function throwError(message: string): never {
+//   throw new Error(message);
+// }
 
 // throwError("Error has happened");
+
+/*
+  Ternary Operator , Nullish Coeslancing Operator,
+*/
+
+const isAuthenticatedUser = "";
+
+const user1 = isAuthenticatedUser ?? "Guest";
+
+const user2 = isAuthenticatedUser ? isAuthenticatedUser : "Guest";
+
+console.log({ user1, user2 }); // {user1: "", user2: "Guest"}
