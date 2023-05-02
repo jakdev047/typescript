@@ -85,3 +85,36 @@ const user02 = {
 const { fullName: userFullName } = user02;
 
 console.log(userFullName);
+
+/*
+  Type alias and optional types
+*/
+
+type PersonType = {
+  name?: string;
+};
+
+type IsActive = boolean;
+
+const player1: PersonType = {
+  name: "Jubayer",
+};
+const player2 = {
+  name: "Alam",
+};
+const player3 = {
+  name: "Sabith",
+};
+const player4 = {
+  name: "Hasan",
+};
+
+const isActive: IsActive = false;
+
+type OperationType = (x: number, y: number) => number;
+
+const calculate = (num1: number, num2: number, operation: OperationType) => {
+  return operation(num1, num2);
+};
+
+console.log(calculate(5, 5, (x, y) => x * y));
