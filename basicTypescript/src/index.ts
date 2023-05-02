@@ -118,3 +118,47 @@ const calculate = (num1: number, num2: number, operation: OperationType) => {
 };
 
 console.log(calculate(5, 5, (x, y) => x * y));
+
+/*
+  Union, Intersection and Enum Types
+*/
+
+type NoobDeveloper = {
+  name: string;
+};
+
+// type JuniorDeveloper = {
+//   name: string;
+//   expertise: string;
+//   experience: number;
+// }
+
+type JuniorDeveloper = NoobDeveloper & {
+  expertise: string;
+  experience: number;
+};
+
+enum Level {
+  junior = "junior",
+  mid = "mid",
+  senior = "senior",
+}
+
+type NextLevelDeveloper = JuniorDeveloper & {
+  leadershipExperience: number;
+  level: Level;
+};
+
+const newDeveloper: NoobDeveloper | JuniorDeveloper = {
+  name: "Jubayer Alam Khan",
+  expertise: "Javascript",
+  experience: 1,
+};
+
+const nextLevelDeveloper: NextLevelDeveloper = {
+  name: "Jubayer Alam Khan",
+  expertise: "Javascript",
+  experience: 1,
+  leadershipExperience: 2,
+  level: Level?.senior,
+};
