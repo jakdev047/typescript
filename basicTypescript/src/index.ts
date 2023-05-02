@@ -34,7 +34,7 @@ const userDetails: {
 */
 const number: number[] = [1, 2, 3, 4, 5];
 
-const add = (a: number, b: number): number => {
+const add = (a: number, b: number = 10): number => {
   return a + b;
 };
 
@@ -60,3 +60,28 @@ console.log(
   "map function",
   number.map((itm: number) => itm * itm)
 );
+
+/*
+  Spread, Rest and Destructuring
+*/
+
+const oldStudent: string[] = ["Jubayer", "Alam"];
+
+const newStudent: string[] = ["Sabith", "Hasan"];
+
+oldStudent.push(...newStudent);
+
+console.log("oldStudentId: ", oldStudent);
+
+const greetFreinds = (...freinds: string[]): void => console.log(freinds);
+
+console.log(greetFreinds("Sabith", "Hasan"));
+
+const user02 = {
+  fullName: "Jubayer",
+  isActive: true,
+};
+
+const { fullName: userFullName } = user02;
+
+console.log(userFullName);
