@@ -28,3 +28,35 @@ const userDetails: {
   isActive: true,
   country: "Bangladesh",
 };
+
+/*
+  Functions in Typescript
+*/
+const number: number[] = [1, 2, 3, 4, 5];
+
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+
+const person: {
+  name: string;
+  balance: number;
+  addBalance(money: number): number;
+  totalBalance: () => void;
+} = {
+  name: "Jubayer",
+  balance: 15,
+  addBalance: function (money: number): number {
+    return this.balance + money;
+  },
+  totalBalance: function (): void {
+    console.log(`Total Balance of ${this.addBalance(100) + this.balance}`);
+  },
+};
+
+console.log("add", add(10, 15));
+
+console.log(
+  "map function",
+  number.map((itm: number) => itm * itm)
+);
