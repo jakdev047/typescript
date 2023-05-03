@@ -86,3 +86,14 @@ const rollNumbers3: Array<string> = ["one", "two", "three"];
 const userNameAndRollNumber: Array<NameRollType> = [{ name: "Mr. X", roll: 2 }];
 
 const person: GenericTuple<string, number> = ["Jubayer", 2];
+
+/*
+  Generic in Interface
+*/
+
+interface NameRollInterface<T, U = null> {
+  name: string;
+  roll: number;
+  skill: T;
+  contact?: U;
+}
