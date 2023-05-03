@@ -68,3 +68,21 @@ interface IRollNumbers {
 }
 
 const rollNumbers: rollTypeNumbers = [1, 2, 3, 4];
+
+/*
+  Introduction of Generic in Type
+*/
+
+type GenericArray<T> = Array<T>;
+
+type NameRollType = { name: string; roll: number };
+
+type GenericTuple<X, Y> = [X, Y];
+
+const rollNumbers2: GenericArray<number> = [1, 2, 3, 4];
+
+const rollNumbers3: Array<string> = ["one", "two", "three"];
+
+const userNameAndRollNumber: Array<NameRollType> = [{ name: "Mr. X", roll: 2 }];
+
+const person: GenericTuple<string, number> = ["Jubayer", 2];
