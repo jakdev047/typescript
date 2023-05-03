@@ -97,3 +97,29 @@ interface NameRollInterface<T, U = null> {
   skill: T;
   contact?: U;
 }
+
+/*
+  Generic in Function
+*/
+
+const createArray = <T>(param: T): T[] => {
+  return [param];
+};
+
+const createTupalArray = <X, Y>(param1: X, param2: Y): [X, Y] => {
+  return [param1, param2];
+};
+
+console.log(createArray<string>("Bangladesh")); // ["Bangladesh"]
+
+console.log(createTupalArray<number, number>(1, 2)); // [1,2]
+
+const getUser = <T>(info: T) => {
+  const skill = "Typescript";
+
+  const modifyObj = { ...info, skill };
+
+  return modifyObj;
+};
+
+const person1 = getUser({ name: "Jubayer" }); // name skill
