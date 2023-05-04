@@ -99,7 +99,7 @@ interface NameRollInterface<T, U = null> {
 }
 
 /*
-  Generic in Function
+  Generic in Function & Constraints in Generics
 */
 
 const createArray = <T>(param: T): T[] => {
@@ -114,7 +114,7 @@ console.log(createArray<string>("Bangladesh")); // ["Bangladesh"]
 
 console.log(createTupalArray<number, number>(1, 2)); // [1,2]
 
-const getUser = <T>(info: T) => {
+const getUser = <T extends User>(info: T) => {
   const skill = "Typescript";
 
   const modifyObj = { ...info, skill };
@@ -122,4 +122,33 @@ const getUser = <T>(info: T) => {
   return modifyObj;
 };
 
-const person1 = getUser({ name: "Jubayer" }); // name skill
+const person1 = getUser({ name: "Hasan", age: 20 }); // name age skill
+
+/*
+  Generic Constraints Using Key 
+*/
+
+type PersonType = {
+  name: string;
+  age: number;
+  number: string;
+};
+
+type PersonUnionType = "name" | "age" | "number";
+
+type PersonTypeUsingKeyOf = keyof PersonType;
+
+const a: PersonUnionType = "name";
+
+const b: PersonTypeUsingKeyOf = "age";
+
+const personInfo = {
+  name: "Mr.X",
+  age: 20,
+};
+
+function getProperty<X, Y extends keyof X>(obj: X, key: Y) {
+  return obj[key];
+}
+
+console.log(getProperty(personInfo, "age")); // 20
