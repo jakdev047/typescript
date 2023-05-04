@@ -152,3 +152,34 @@ function getProperty<X, Y extends keyof X>(obj: X, key: Y) {
 }
 
 console.log(getProperty(personInfo, "age")); // 20
+
+/*
+  Asynchronous TypeScript
+*/
+
+// promise create
+const makePromise = (): Promise<string> => {
+  return new Promise<string>((resolve, reject) => {
+    const data: string = "Data is fetched";
+
+    if (data) {
+      resolve(data);
+    } else {
+      reject("Failed to reject data");
+    }
+  });
+};
+
+const getPromiseData = async (): Promise<string> => {
+  const data = await makePromise();
+
+  return data;
+};
+
+const promiseResult = async () => {
+  const data = await getPromiseData();
+
+  console.log(data);
+};
+
+promiseResult();
