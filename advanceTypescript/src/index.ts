@@ -183,3 +183,35 @@ const promiseResult = async () => {
 };
 
 promiseResult();
+
+/*
+  Conditional Types
+*/
+
+type a1 = string;
+
+type b1 = a1 extends string ? string : null;
+
+type PersonInfo = {
+  skillOne: string;
+  skillTwo: string;
+};
+
+type A = keyof PersonInfo; // skillOne | skillTwo
+
+// normal
+type CheckProperty<T> = T extends { skillOne: string } ? true : false;
+
+type SkillOne = CheckProperty<PersonInfo>; // true
+
+// generic K extends keyof PersonInfo (skillOne extends skillOne | skillTwo )
+type CheckPropertyGeneric<T, K> = K extends keyof PersonInfo ? true : false;
+
+type SkillTwo = CheckPropertyGeneric<PersonInfo, "skillOne">; // true
+
+// remove
+type NumberList = 1 | 2 | 3;
+
+type RemvoveType<T> = T extends 1 ? never : T;
+
+type currentType = RemvoveType<NumberList>; // 2 | 3
