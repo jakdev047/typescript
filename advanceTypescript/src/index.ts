@@ -215,3 +215,29 @@ type NumberList = 1 | 2 | 3;
 type RemvoveType<T> = T extends 1 ? never : T;
 
 type currentType = RemvoveType<NumberList>; // 2 | 3
+
+/*
+  Mapped Types
+*/
+
+type Volume = {
+  width: string;
+  height: string;
+};
+
+type Area = {
+  [key in keyof Volume]: number;
+};
+
+type Area2 = {
+  [key in keyof Volume]: Volume[key];
+};
+
+type Area3<T> = {
+  [key in keyof T]: T[key];
+};
+
+let area3: Area3<{ width: number; height: number }> = {
+  width: 20,
+  height: 30,
+};
