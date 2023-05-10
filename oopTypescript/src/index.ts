@@ -67,3 +67,80 @@ class Teacher extends Person {
     return `This ${this.name} will take for ${numOfClass}`;
   }
 }
+
+/*
+  Type Guards
+*/
+
+type NormalUserType = {
+  name: string;
+};
+
+type AdminUserType = {
+  name: string;
+  role: string;
+};
+
+function getUser(user: NormalUserType | AdminUserType): string {
+  if ("role" in user) {
+    return `I am an admin and my role is ${user.role}`;
+  } else {
+    return `I am a normal user and my name is ${user.name}`;
+  }
+}
+
+const normalUser1: NormalUserType = { name: "Jubayer" };
+
+const adminUser1: AdminUserType = { name: "Hasan", role: "admin" };
+
+console.log(getUser(normalUser1));
+
+class Dog extends Animal {
+  // constructor
+  constructor(
+    public name: string,
+    public species: string,
+    public sound: string
+  ) {
+    super(name, species, sound);
+  }
+
+  // method
+  bark() {
+    return `I am a ${this.species} and I bark like a ${this.sound}`;
+  }
+}
+
+class Cat extends Animal {
+  // constructor
+  constructor(
+    public name: string,
+    public species: string,
+    public sound: string
+  ) {
+    super(name, species, sound);
+  }
+
+  // method
+  meaw() {
+    return `I am a ${this.species} and I meaw like a ${this.sound}`;
+  }
+}
+
+function isDog(animal: Animal): animal is Dog {
+  return animal instanceof Dog;
+}
+
+function getAnimal(animal: Animal) {
+  if (isDog(animal)) {
+    return animal.bark();
+  } else if (animal instanceof Cat) {
+    return animal.meaw();
+  } else {
+    return animal.makeSound();
+  }
+}
+
+const cat1 = new Cat("Pertian", "cat", "meaw meaw");
+
+console.log(getAnimal(cat1));
