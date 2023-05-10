@@ -144,3 +144,30 @@ function getAnimal(animal: Animal) {
 const cat1 = new Cat("Pertian", "cat", "meaw meaw");
 
 console.log(getAnimal(cat1));
+
+/*
+  Access Modifiers: Public, Private, Protected
+*/
+
+class BankAccount {
+  // property
+  public readonly id: number;
+  public name: string;
+  private _balance: string;
+
+  // constructor
+  constructor(id: number, name: string, balance: string) {
+    this.id = id;
+    this.name = name;
+    this._balance = balance;
+  }
+
+  // method
+  getBalance() {
+    return `My current balace is ${this._balance}`;
+  }
+
+  addDeposit(amount: number) {
+    this._balance += amount;
+  }
+}
