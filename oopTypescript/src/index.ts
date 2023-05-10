@@ -208,3 +208,27 @@ class Counter {
 
 console.log(Counter.increment()); // 1
 console.log(Counter.increment()); // 2
+
+/*
+  Polymorphism
+*/
+
+class Shape {
+  getArea(): void {}
+}
+
+class Circle extends Shape {
+  // property
+  radius: number;
+
+  // constructor
+  constructor(radius: number) {
+    super();
+    this.radius = radius;
+  }
+
+  // method
+  getArea(): number {
+    return Math.PI * this.radius * this.radius;
+  }
+}
