@@ -189,3 +189,22 @@ console.log(myAccount.balance); // 20
 myAccount.deposit = 80;
 
 console.log(myAccount.balance); // 100
+
+/*
+  Static in Class
+*/
+
+class Counter {
+  static counter: number = 0;
+
+  static increment(): number {
+    return ++Counter.counter;
+  }
+
+  static decrement(): number {
+    return --Counter.counter;
+  }
+}
+
+console.log(Counter.increment()); // 1
+console.log(Counter.increment()); // 2
