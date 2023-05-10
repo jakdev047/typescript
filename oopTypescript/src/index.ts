@@ -153,13 +153,23 @@ class BankAccount {
   // property
   public readonly id: number;
   public name: string;
-  private _balance: string;
+  private _balance: number;
 
   // constructor
-  constructor(id: number, name: string, balance: string) {
+  constructor(id: number, name: string, balance: number) {
     this.id = id;
     this.name = name;
     this._balance = balance;
+  }
+
+  // getter
+  get balance(): number {
+    return this._balance;
+  }
+
+  // setter
+  set deposit(amount: number) {
+    this._balance += amount;
   }
 
   // method
@@ -171,3 +181,11 @@ class BankAccount {
     this._balance += amount;
   }
 }
+
+const myAccount = new BankAccount(123456, "Jubayer", 20);
+
+console.log(myAccount.balance); // 20
+
+myAccount.deposit = 80;
+
+console.log(myAccount.balance); // 100
