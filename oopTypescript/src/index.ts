@@ -1,7 +1,7 @@
 console.log("OOP Typescript...");
 
 /*
-  class
+  Class
 */
 
 class Animal {
