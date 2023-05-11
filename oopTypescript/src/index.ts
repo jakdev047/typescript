@@ -299,3 +299,40 @@ class Car extends AbstractVehicle {
     return `I am stopping engine`;
   }
 }
+
+/*
+  utility
+*/
+
+interface IPerson {
+  name: string;
+  email: string;
+  contactNo: string;
+}
+
+type Contact = Pick<IPerson, "contactNo" | "email">;
+
+type Name = Omit<IPerson, "contactNo" | "email">;
+
+type Optional = Partial<IPerson>;
+
+type RequiredProps = Required<IPerson>;
+
+const person1: Readonly<IPerson> = {
+  name: "Jubayer",
+  email: "abc@example.com",
+  contactNo: "0123456789",
+};
+
+// person1.name = "Alam"; // error
+
+type ColorList = {
+  [key: string]: string;
+};
+
+type ColorListRecord = Record<"red" | "green", string>;
+
+const colorList: ColorListRecord = {
+  red: "red",
+  green: "green",
+};
