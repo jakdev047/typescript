@@ -1,97 +1,228 @@
 "use strict";
+console.log("OOP Typescript...");
 /*
-  Type Assertion
+  class
 */
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-let typeAssertion;
-typeAssertion = "Type Assertion";
-console.log(typeAssertion.length); // 14
-function kgToGram(param) {
-    if (typeof param === "string") {
-        const value = parseFloat(param) * 1000;
-        return `The converted result is: ${value} gram`;
+class Animal {
+    // constructor
+    constructor(name, species, sound) {
+        this.sound = sound;
+        this.name = name;
+        this.species = species;
     }
-    if (typeof param === "number") {
-        const value = param * 1000;
-        return value;
+    // method
+    makeSound() {
+        console.log(`This ${this.name} says ${this.sound}`);
     }
 }
-const resultToBeString = kgToGram("1000"); // string type return
-const resultToBeNumber = kgToGram(1000); // string type return
-const userWithTypeAlias = {
-    name: "Type Alias",
-    age: 100,
-};
-const userWithInterface = {
-    name: "Interface",
-    age: 100,
-};
-const addNumbers = (num1, num2) => num1 + num2;
-const rollNumbers = [1, 2, 3, 4];
-const rollNumbers2 = [1, 2, 3, 4];
-const rollNumbers3 = ["one", "two", "three"];
-const userNameAndRollNumber = [{ name: "Mr. X", roll: 2 }];
-const person = ["Jubayer", 2];
+// instance
+const dog = new Animal("German Shepard", "dog", "ghew ghew");
+dog.makeSound(); // This German Shepard says ghew ghew
 /*
-  Generic in Function & Constraints in Generics
+  Inheritence
 */
-const createArray = (param) => {
-    return [param];
-};
-const createTupalArray = (param1, param2) => {
-    return [param1, param2];
-};
-console.log(createArray("Bangladesh")); // ["Bangladesh"]
-console.log(createTupalArray(1, 2)); // [1,2]
-const getUser = (info) => {
-    const skill = "Typescript";
-    const modifyObj = Object.assign(Object.assign({}, info), { skill });
-    return modifyObj;
-};
-const person1 = getUser({ name: "Hasan", age: 20 }); // name age skill
-const a = "name";
-const b = "age";
-const personInfo = {
-    name: "Mr.X",
-    age: 20,
-};
-function getProperty(obj, key) {
-    return obj[key];
+class Person {
+    // constructor
+    constructor(name, age, address) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
+    // method
+    makeSleep(hours) {
+        return `This ${this.name} will sleep for ${hours}`;
+    }
 }
-console.log(getProperty(personInfo, "age")); // 20
+class Student extends Person {
+    // constructor
+    constructor(name, age, address) {
+        super(name, age, address);
+        this.name = name;
+        this.age = age;
+        this.address = address;
+    }
+}
+class Teacher extends Person {
+    // constructor
+    constructor(name, age, address, designation) {
+        super(name, age, address);
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.designation = designation;
+    }
+    // method
+    takeClasses(numOfClass) {
+        return `This ${this.name} will take for ${numOfClass}`;
+    }
+}
+function getUser(user) {
+    if ("role" in user) {
+        return `I am an admin and my role is ${user.role}`;
+    }
+    else {
+        return `I am a normal user and my name is ${user.name}`;
+    }
+}
+const normalUser1 = { name: "Jubayer" };
+const adminUser1 = { name: "Hasan", role: "admin" };
+console.log(getUser(normalUser1));
+class Dog extends Animal {
+    // constructor
+    constructor(name, species, sound) {
+        super(name, species, sound);
+        this.name = name;
+        this.species = species;
+        this.sound = sound;
+    }
+    // method
+    bark() {
+        return `I am a ${this.species} and I bark like a ${this.sound}`;
+    }
+}
+class Cat extends Animal {
+    // constructor
+    constructor(name, species, sound) {
+        super(name, species, sound);
+        this.name = name;
+        this.species = species;
+        this.sound = sound;
+    }
+    // method
+    meaw() {
+        return `I am a ${this.species} and I meaw like a ${this.sound}`;
+    }
+}
+function isDog(animal) {
+    return animal instanceof Dog;
+}
+function getAnimal(animal) {
+    if (isDog(animal)) {
+        return animal.bark();
+    }
+    else if (animal instanceof Cat) {
+        return animal.meaw();
+    }
+    else {
+        return animal.makeSound();
+    }
+}
+const cat1 = new Cat("Pertian", "cat", "meaw meaw");
+console.log(getAnimal(cat1));
 /*
-  Asynchronous TypeScript
+  Access Modifiers: Public, Private, Protected
 */
-// promise create
-const makePromise = () => {
-    return new Promise((resolve, reject) => {
-        const data = "Data is fetched";
-        if (data) {
-            resolve(data);
-        }
-        else {
-            reject("Failed to reject data");
-        }
-    });
+class BankAccount {
+    // constructor
+    constructor(id, name, balance) {
+        this.id = id;
+        this.name = name;
+        this._balance = balance;
+    }
+    // getter
+    get balance() {
+        return this._balance;
+    }
+    // setter
+    set deposit(amount) {
+        this._balance += amount;
+    }
+    // method
+    getBalance() {
+        return `My current balace is ${this._balance}`;
+    }
+    addDeposit(amount) {
+        this._balance += amount;
+    }
+}
+const myAccount = new BankAccount(123456, "Jubayer", 20);
+console.log(myAccount.balance); // 20
+myAccount.deposit = 80;
+console.log(myAccount.balance); // 100
+/*
+  Static in Class
+*/
+class Counter {
+    static increment() {
+        return ++Counter.counter;
+    }
+    static decrement() {
+        return --Counter.counter;
+    }
+}
+Counter.counter = 0;
+console.log(Counter.increment()); // 1
+console.log(Counter.increment()); // 2
+/*
+  Polymorphism
+*/
+class Shape {
+    getArea() { }
+}
+class Circle extends Shape {
+    // constructor
+    constructor(radius) {
+        super();
+        this.radius = radius;
+    }
+    // method
+    getArea() {
+        return Math.PI * this.radius * this.radius;
+    }
+}
+class Vehicle {
+    constructor(name, brand, model) {
+        this.name = name;
+        this.brand = brand;
+        this.model = model;
+    }
+    startEngine() {
+        // throw new Error("Method not implemented.");
+        return `I am starting engine`;
+    }
+    moveEngine() {
+        return `I am moving engine`;
+    }
+    stopEngine() {
+        return `I am stopping engine`;
+    }
+}
+class AbstractVehicle {
+    constructor(name, brand, model) {
+        this.name = name;
+        this.brand = brand;
+        this.model = model;
+    }
+}
+class Car extends AbstractVehicle {
+    startEngine() {
+        return `I am starting engine`;
+    }
+    moveEngine() {
+        return `I am moving engine`;
+    }
+    stopEngine() {
+        return `I am stopping engine`;
+    }
+}
+const person1 = {
+    name: "Jubayer",
+    email: "abc@example.com",
+    contactNo: "0123456789",
 };
-const getPromiseData = () => __awaiter(void 0, void 0, void 0, function* () {
-    const data = yield makePromise();
-    return data;
-});
-const promiseResult = () => __awaiter(void 0, void 0, void 0, function* () {
-    const data = yield getPromiseData();
-    console.log(data);
-});
-promiseResult();
-let area3 = {
-    width: 20,
-    height: 30,
+const colorList = {
+    red: "red",
+    green: "green",
 };
+// class
+class User {
+    // constructor
+    constructor(firstName, lastName) {
+        this.data = { firstName, lastName };
+        this.methods = {
+            getFullName: () => `${firstName} ${lastName}`,
+        };
+    }
+}
+const user1 = new User("Jubayer", "Khan");
+console.log(user1.methods.getFullName()); // Jubayer Khan

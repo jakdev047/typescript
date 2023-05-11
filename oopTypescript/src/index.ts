@@ -336,3 +336,46 @@ const colorList: ColorListRecord = {
   red: "red",
   green: "green",
 };
+
+/*
+  to use multiple interface as a type and create a model for a class
+*/
+
+// properties
+interface IUser {
+  firstName: string;
+  lastName: string;
+}
+
+// method
+interface IMethods {
+  getFullName(): string;
+}
+
+// Model
+interface IModel<TData, TMethod> {
+  data: TData;
+  methods: TMethod;
+}
+
+// type
+type UserModel = IModel<IUser, IMethods>;
+
+// class
+class User implements UserModel {
+  // peoperty
+  data: IUser;
+  methods: IMethods;
+
+  // constructor
+  constructor(firstName: string, lastName: string) {
+    this.data = { firstName, lastName };
+    this.methods = {
+      getFullName: () => `${firstName} ${lastName}`,
+    };
+  }
+}
+
+const user1 = new User("Jubayer", "Khan");
+
+console.log(user1.methods.getFullName()); // Jubayer Khan
