@@ -232,3 +232,70 @@ class Circle extends Shape {
     return Math.PI * this.radius * this.radius;
   }
 }
+
+/*
+  Abstraction
+*/
+
+// interface
+
+interface IVehicle {
+  // property
+  name: string;
+  brand: string;
+  model: string;
+
+  // method
+  startEngine(): void;
+  moveEngine(): void;
+  stopEngine(): void;
+}
+
+class Vehicle implements IVehicle {
+  constructor(
+    public name: string,
+    public brand: string,
+    public model: string
+  ) {}
+
+  startEngine(): string {
+    // throw new Error("Method not implemented.");
+    return `I am starting engine`;
+  }
+
+  moveEngine(): string {
+    return `I am moving engine`;
+  }
+
+  stopEngine(): string {
+    return `I am stopping engine`;
+  }
+}
+
+abstract class AbstractVehicle {
+  constructor(
+    public name: string,
+    public brand: string,
+    public model: string
+  ) {}
+
+  abstract startEngine(): void;
+
+  abstract moveEngine(): void;
+
+  abstract stopEngine(): void;
+}
+
+class Car extends AbstractVehicle {
+  startEngine(): string {
+    return `I am starting engine`;
+  }
+
+  moveEngine(): string {
+    return `I am moving engine`;
+  }
+
+  stopEngine(): string {
+    return `I am stopping engine`;
+  }
+}
